@@ -44,13 +44,15 @@ class NightWatchService {
         });    
 
 return `
-    browser
+module.exports = (browser) => {   
+    browser.
         .url(${url})
         .waitForElementVisible('body')
 
     ${inputCases.join("")}
 
     browser.end();  
+}    
 `;
     }
 
