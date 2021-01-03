@@ -1,0 +1,31 @@
+{
+  "name": "gulp-project",
+  "version": "1.0.0",
+  "description": "demo",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "gulp",
+    "build": "gulp build",
+    "startbuild": "pm2 start server.js",
+    "stopbuild": "pm2 stop server.js",
+    "restartbuild": "pm2 restart server.js",
+    "server": "nodemon"
+  },
+  "author": "thaivan",
+  "license": "ISC",
+  "devDependencies": {
+    "chromedriver": "^87.0.4",
+    "geckodriver": "^1.21.1",
+    "gulp": "^4.0.2",
+    "gulp-bro": "^2.0.0",
+    "gulp-sass": "^4.1.0",
+    "iedriver": "^3.150.1",
+    "nightwatch": "^1.5.1",
+    "node-cmd": "^4.0.0",
+    "selenium-server": "^3.141.59"
+  },
+  "dependencies": {
+    "read-excel-file": "^4.1.0"
+  }
+}
