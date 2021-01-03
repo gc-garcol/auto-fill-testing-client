@@ -5,9 +5,9 @@
 
   <testsuite name="TestExecutor"
     errors="0" failures="0" hostname="" id="" package="TestExecutor" skipped="0"
-    tests="1" time="5.322" timestamp="">
+    tests="1" time="4.750" timestamp="">
   
-    <testcase name="Demo test ecosia.org" classname="TestExecutor" time="5.322" assertions="5">
+    <testcase name="Demo test ecosia.org" classname="TestExecutor" time="4.750" assertions="5">
 
     
 
