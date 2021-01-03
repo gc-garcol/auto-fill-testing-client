@@ -1779,30 +1779,6 @@ process.chdir = function (dir) {
 process.umask = function() { return 0; };
 
 },{}],30:[function(require,module,exports){
-const NightWatchService = require("./service/NightWatchService");
-
-// DOM
-const btnExecute = document.getElementById("js-btn-execute");
-
-// fake
-const fakeData = [
-    {
-        "inputName": "username",
-        "inputValue": "garcol"
-    },
-    {
-        "inputName": "password",
-        "inputValue": "iloveyou"
-    }
-]
-
-const fakeUrl = "https://www.ecosia.org/";
-// end fake
-
-btnExecute.addEventListener("click", () => {
-    NightWatchService.resolveTestCase("testfile", fakeUrl, fakeData);
-})
-},{"./service/NightWatchService":31}],31:[function(require,module,exports){
 (function (__dirname){(function (){
 const FileUtil = require("../utils/FileUtil");
 const axios = require("axios");
@@ -1894,7 +1870,7 @@ module.exports = {
 const INSTANCE = new NightWatchService();
 module.exports = INSTANCE;
 }).call(this)}).call(this,"/service")
-},{"../utils/FileUtil":32,"axios":1}],32:[function(require,module,exports){
+},{"../utils/FileUtil":31,"axios":1}],31:[function(require,module,exports){
 const fs = require('fs');
 
 class FileUtil {
