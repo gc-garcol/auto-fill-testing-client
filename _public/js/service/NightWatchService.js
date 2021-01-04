@@ -1797,14 +1797,14 @@ class NightWatchService {
      * @param {String} filename 
      * @param {Array} data 
      */
-    async resolveTestCase(testCaseFileName, url, data) {
+    resolveTestCase(testCaseFileName, url, data) {
         const testContent = this.initTestCaseContent(url, data);
         console.log(testContent);
 
         const executorContent = this.initExecutorContent(testCaseFileName);
         console.log(executorContent);
 
-        return await this.invokeNightWatch(testCaseFileName, testContent, executorContent);
+        this.invokeNightWatch(testCaseFileName, testContent, executorContent);
     }
 
     /**
@@ -1859,13 +1859,16 @@ module.exports = {
     /**
      * Call api to invoke cmd
      */
-    async invokeNightWatch(testCaseFileName, testContent, executorContent) {
+    invokeNightWatch(testCaseFileName, testContent, executorContent) {
         let data = {
             testCaseFileName: testCaseFileName,
             testCaseContent: testContent,
             executorContent: executorContent
         }
-        return await axios.post('http://localhost:8080/api/', data);
+        axios.post('http://localhost:8080/api/', data).then(response => {
+            debugger
+            console.log(response);
+        });
     }
 
 }

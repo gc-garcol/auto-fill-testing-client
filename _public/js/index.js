@@ -27170,6 +27170,7 @@ class IndexLogic {
         this.btnExecute = document.getElementById("js-btn-execute");
         this.inputFile = document.getElementById("js-file");
         this.testCaseArea = document.getElementById("js-testCase");
+        this.url = document.getElementById("js-url");
 
         this.readFileStratefy = null;
 
@@ -27178,7 +27179,7 @@ class IndexLogic {
 
     initEventListeners() {
         this.inputFile.addEventListener("change", this.onFileChange.bind(this));
-        this.inputFile.addEventListener("click", this.onFileChange.bind(this));
+        this.inputFile.addEventListener("click", this.clearFile.bind(this));
 
         this.btnExecute.addEventListener("click", this.submit.bind(this));
     }
@@ -27206,6 +27207,7 @@ class IndexLogic {
     }
 
     clearFile() {
+        Logger.info("click clearFile");
         this.inputFile.value = '';
     }
 
@@ -27217,7 +27219,7 @@ class IndexLogic {
         if (!selectOption) return;
 
         let data = await this.readFileStratefy.onReadingSheet(this.inputFile.files[0], selectOption.value);
-        NightWatchService.resolveTestCase(selectOption.value, fakeUrl, data);
+        NightWatchService.resolveTestCase(selectOption.value, this.url.value, data);
     }
 
 }
@@ -27242,14 +27244,14 @@ class NightWatchService {
      * @param {String} filename 
      * @param {Array} data 
      */
-    async resolveTestCase(testCaseFileName, url, data) {
+    resolveTestCase(testCaseFileName, url, data) {
         const testContent = this.initTestCaseContent(url, data);
         console.log(testContent);
 
         const executorContent = this.initExecutorContent(testCaseFileName);
         console.log(executorContent);
 
-        return await this.invokeNightWatch(testCaseFileName, testContent, executorContent);
+        this.invokeNightWatch(testCaseFileName, testContent, executorContent);
     }
 
     /**
@@ -27304,20 +27306,23 @@ module.exports = {
     /**
      * Call api to invoke cmd
      */
-    async invokeNightWatch(testCaseFileName, testContent, executorContent) {
+    invokeNightWatch(testCaseFileName, testContent, executorContent) {
         let data = {
             testCaseFileName: testCaseFileName,
             testCaseContent: testContent,
             executorContent: executorContent
         }
-        return await axios.post('http://localhost:8080/api/', data);
+        axios.post('http://localhost:8080/api/', data).then(response => {
+            debugger
+            console.log(response);
+        });
     }
 
 }
 
 const INSTANCE = new NightWatchService();
 module.exports = INSTANCE;
-}).call(this)}).call(this,"/")
+}).call(this)}).call(this,"/service")
 },{"../utils/FileUtil":132,"axios":1}],132:[function(require,module,exports){
 const fs = require('fs');
 

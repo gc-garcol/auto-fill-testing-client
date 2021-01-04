@@ -10,10 +10,13 @@
 <body>
 
     <div>
+        <input class="input-url" type="text" id="js-url" value="http://localhost:3000/test">
+    </div>
+    <div class="margin-top-32">
         <input type="file" id="js-file" accept=".xlsx, .xls, .csv">
     </div>
 
-    <div>
+    <div class="margin-top-32">
         <!-- <label for="js-sheets">Choose test case:</label>
         <select id="js-sheets" name="test-case"> -->
         <div id="js-testCase">
@@ -21,7 +24,7 @@
         </div>
     </div>
 
-    <button class="margin-top-32" id="js-btn-execute">Execute</button>
+    <button type="button" class="margin-top-32" id="js-btn-execute">Execute</button>
 
     <script src="./js/index.js"></script>
 </body>
