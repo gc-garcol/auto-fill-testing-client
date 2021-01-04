@@ -1,5 +1,6 @@
+
 module.exports = {
-    'Demo test ecosia.org': require('../_test_cases/SampleTest'),
+    'Test case testfile': require('../_test_cases/testfile'),
 
     after(browser, done) {
         browser.end(() => {
@@ -9,4 +10,5 @@ module.exports = {
             done();
         });
       }
-  };
+  };    
+        

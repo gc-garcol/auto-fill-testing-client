@@ -1851,8 +1851,8 @@ class NightWatchService {
 
 return `
 module.exports = (browser) => {   
-    browser.
-        .url(${url})
+    browser
+        .url('${url}')
         .waitForElementVisible('body')
 
     ${inputCases.join("")}
