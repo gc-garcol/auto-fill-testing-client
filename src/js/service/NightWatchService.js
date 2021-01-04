@@ -35,9 +35,9 @@ class NightWatchService {
         const inputCases = [];
         data.forEach(element => {
             inputCases.push(`
-            browser.element('css selector', 'input[name=${data.inputName}]', (result) => {
+            browser.element('css selector', 'input[name=${element.inputName}]', (result) => {
                 if (result.status == 0) {
-                    browser.setValue('input[name=${data.inputName}]', ${data.inputValue})
+                    browser.setValue('input[name=${element.inputName}]', ${element.inputValue})
                 } 
             });            
             `);
