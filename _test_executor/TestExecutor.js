@@ -1,6 +1,6 @@
 
 module.exports = {
-    'Test case testfile': require('../_test_cases/testfile'),
+    'Test case MZMO01_testcase02': require('../_test_cases/MZMO01_testcase02'),
 
     after(browser, done) {
         browser.end(() => {

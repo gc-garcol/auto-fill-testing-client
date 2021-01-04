@@ -1,5 +1,7 @@
 const NightWatchService = require("./service/NightWatchService");
 const ReadFileStrategy = require("./core/ReadFileStrategy");
+const Dropdown = require("./components/Dropdown");
+const Logger = require("./utils/Logger");
 
 // fake
 const fakeData = [
@@ -22,6 +24,8 @@ class IndexLogic {
     constructor() {
         this.btnExecute = document.getElementById("js-btn-execute");
         this.inputFile = document.getElementById("js-file");
+        this.testCaseArea = document.getElementById("js-testCase");
+
         this.readFileStratefy = null;
 
         this.initEventListeners();
@@ -43,17 +47,32 @@ class IndexLogic {
     async readFile() {
         this.readFileStratefy = new ReadFileStrategy();
 
-        await this.readFileStratefy.onReadFile(this.inputFile.files[0]);
+        let sheets = await this.readFileStratefy.onReadFile(this.inputFile.files[0]);
 
-        await this.readFileStratefy.onReadingSheet(this.inputFile.files[0], "MZMO01_testcase02");
+        this.onRenderDropdown(sheets);
+    }
+
+    onRenderDropdown(sheets) {
+        new Dropdown().render(this.testCaseArea, sheets, this.initDropdownEventListender.bind(this));
+    }
+
+    initDropdownEventListender() {
+        
     }
 
     clearFile() {
         this.inputFile.value = '';
     }
 
-    submit() {
-        NightWatchService.resolveTestCase("testfile", fakeUrl, fakeData);s
+    async submit() {
+        // NightWatchService.resolveTestCase("testfile", fakeUrl, fakeData);
+
+        let selectOption = document.getElementById("js-dropdown");
+
+        if (!selectOption) return;
+
+        let data = await this.readFileStratefy.onReadingSheet(this.inputFile.files[0], selectOption.value);
+        NightWatchService.resolveTestCase(selectOption.value, fakeUrl, data);
     }
 
 }

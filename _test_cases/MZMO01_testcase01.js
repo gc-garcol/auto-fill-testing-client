@@ -7,13 +7,13 @@ module.exports = (browser) => {
     
             browser.element('css selector', 'input[name=username]', (result) => {
                 if (result.status == 0) {
-                    browser.setValue('input[name=username]', 'thaivan')
+                    browser.setValue('input[name=username]', 'garcol')
                 } 
             });            
             
             browser.element('css selector', 'input[name=password]', (result) => {
                 if (result.status == 0) {
-                    browser.setValue('input[name=password]', 'buler lead')
+                    browser.setValue('input[name=password]', 'iloveu')
                 } 
             });            
             

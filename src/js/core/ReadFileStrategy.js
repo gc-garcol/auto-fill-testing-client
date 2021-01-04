@@ -10,6 +10,7 @@ class ReadFileStrategy {
     async onReadFile(file) {
         await this.onGettingSheets(file);
         Logger.info("all sheets", this.sheetNames);
+        return this.sheetNames;
     }
 
     async onGettingSheets(file) {
@@ -24,14 +25,14 @@ class ReadFileStrategy {
     }
 
     async onReadingSheet(file, sheetName) {
-        if (this.sheetMap[sheetName]) {
-            return this.sheetMap[sheetName];
+        if (!this.sheetMap[sheetName]) {
+            let self = this;
+            await readXlsxFile(file, {sheet: sheetName}).then((rows) => {
+                self.onBuildingSheet(sheetName, rows);
+            });
         }
 
-        let self = this;
-        await readXlsxFile(file, {sheet: sheetName}).then((rows) => {
-            self.onBuildingSheet(sheetName, rows);
-        });
+        return this.sheetMap[sheetName];
     }
 
     onBuildingSheet(sheetName, rows) {

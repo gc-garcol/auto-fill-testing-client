@@ -1872,7 +1872,7 @@ module.exports = {
 
 const INSTANCE = new NightWatchService();
 module.exports = INSTANCE;
-}).call(this)}).call(this,"/service")
+}).call(this)}).call(this,"/")
 },{"../utils/FileUtil":31,"axios":1}],31:[function(require,module,exports){
 const fs = require('fs');
 
