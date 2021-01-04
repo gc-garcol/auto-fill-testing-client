@@ -1796,7 +1796,7 @@ const fakeData = [
     }
 ]
 
-const fakeUrl = "https://www.ecosia.org/";
+const fakeUrl = "http://localhost:3000/test";
 // end fake
 
 btnExecute.addEventListener("click", () => {
@@ -1843,7 +1843,7 @@ class NightWatchService {
             inputCases.push(`
             browser.element('css selector', 'input[name=${element.inputName}]', (result) => {
                 if (result.status == 0) {
-                    browser.setValue('input[name=${element.inputName}]', ${element.inputValue})
+                    browser.setValue('input[name=${element.inputName}]', '${element.inputValue}')
                 } 
             });            
             `);
@@ -1857,6 +1857,7 @@ module.exports = (browser) => {
 
     ${inputCases.join("")}
 
+    browser.pause(10000);
     browser.end();  
 }    
 `;

@@ -37,7 +37,7 @@ class NightWatchService {
             inputCases.push(`
             browser.element('css selector', 'input[name=${element.inputName}]', (result) => {
                 if (result.status == 0) {
-                    browser.setValue('input[name=${element.inputName}]', ${element.inputValue})
+                    browser.setValue('input[name=${element.inputName}]', '${element.inputValue}')
                 } 
             });            
             `);
@@ -51,6 +51,7 @@ module.exports = (browser) => {
 
     ${inputCases.join("")}
 
+    browser.pause(10000);
     browser.end();  
 }    
 `;

@@ -15,7 +15,7 @@ const fakeData = [
     }
 ]
 
-const fakeUrl = "https://www.ecosia.org/";
+const fakeUrl = "http://localhost:3000/test";
 // end fake
 
 btnExecute.addEventListener("click", () => {

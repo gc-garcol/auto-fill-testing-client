@@ -1819,7 +1819,7 @@ class NightWatchService {
             inputCases.push(`
             browser.element('css selector', 'input[name=${element.inputName}]', (result) => {
                 if (result.status == 0) {
-                    browser.setValue('input[name=${element.inputName}]', ${element.inputValue})
+                    browser.setValue('input[name=${element.inputName}]', '${element.inputValue}')
                 } 
             });            
             `);
@@ -1833,6 +1833,7 @@ module.exports = (browser) => {
 
     ${inputCases.join("")}
 
+    browser.pause(10000);
     browser.end();  
 }    
 `;
@@ -1871,7 +1872,7 @@ module.exports = {
 
 const INSTANCE = new NightWatchService();
 module.exports = INSTANCE;
-}).call(this)}).call(this,"/")
+}).call(this)}).call(this,"/service")
 },{"../utils/FileUtil":31,"axios":1}],31:[function(require,module,exports){
 const fs = require('fs');
 
