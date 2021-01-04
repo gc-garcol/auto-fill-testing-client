@@ -4,9 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fill input</title>
+
+    <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
-    <button id="js-btn-execute">Execute</button>
+
+    <div>
+        <input type="file" id="js-file" accept=".xlsx, .xls, .csv">
+    </div>
+
+    <div>
+        <label for="js-sheets">Choose test case:</label>
+        <select id="js-sheets" name="cars">
+            
+        </select>
+    </div>
+
+    <button class="margin-top-32" id="js-btn-execute">Execute</button>
 
     <script src="./js/index.js"></script>
 </body>
