@@ -18,7 +18,7 @@ class Dropdown {
         });
 
         dom.innerHTML = `
-        <label for="js-dropdown">Choose a car:</label>
+        <label for="js-dropdown">Choose a test case:</label>
 
         <select id="js-dropdown" name="js-dropdown">
         ${optionHtml.join("")}

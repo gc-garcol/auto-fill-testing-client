@@ -1,8 +1,8 @@
 const FileUtil = require("../utils/FileUtil");
+const Logger = require("../utils/Logger");
 const axios = require("axios");
 
 const EXECUTOR_FILE = `${__dirname}/_test_executor/TestExecutor.js`;
-
 
 class NightWatchService {
 
@@ -15,14 +15,26 @@ class NightWatchService {
      * @param {String} filename 
      * @param {Array} data 
      */
-    resolveTestCase(testCaseFileName, url, data) {
+    async resolveTestCase(testCaseFileName, url, data) {
         const testContent = this.initTestCaseContent(url, data);
         console.log(testContent);
 
         const executorContent = this.initExecutorContent(testCaseFileName);
         console.log(executorContent);
 
-        this.invokeNightWatch(testCaseFileName, testContent, executorContent);
+        return await this.invokeNightWatch(testCaseFileName, testContent, executorContent);
+    }
+
+    /**
+     * Call api to invoke cmd
+     */
+    async invokeNightWatch(testCaseFileName, testContent, executorContent) {
+        let data = {
+            testCaseFileName: testCaseFileName,
+            testCaseContent: testContent,
+            executorContent: executorContent
+        }
+        await axios.post('http://localhost:8080/api/', data);
     }
 
     /**
@@ -72,21 +84,6 @@ module.exports = {
       }
   };    
         `
-    }
-
-    /**
-     * Call api to invoke cmd
-     */
-    invokeNightWatch(testCaseFileName, testContent, executorContent) {
-        let data = {
-            testCaseFileName: testCaseFileName,
-            testCaseContent: testContent,
-            executorContent: executorContent
-        }
-        axios.post('http://localhost:8080/api/', data).then(response => {
-            debugger
-            console.log(response);
-        });
     }
 
 }
